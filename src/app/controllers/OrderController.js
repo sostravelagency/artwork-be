@@ -24,8 +24,8 @@ class OrderController {
                     res.json(order);
                 })
         } catch (error) {
-
-            res.status(500).json({ error: 'Could not retrieve the order.' });
+            console.log(error)
+            res.status(500).json({ error: 'Could not retrieve the order.' , data: error});
         }
 
     }
@@ -46,7 +46,7 @@ class OrderController {
             // Trả về thông tin đơn hàng
         } catch (error) {
 
-            res.status(500).json({ error: 'Could not retrieve the order.' });
+            res.status(500).json({ error: 'Could not retrieve the order.' , data: error});
         }
 
     }
@@ -71,7 +71,7 @@ class OrderController {
                 })
         } catch (error) {
 
-            res.status(500).json({ error: 'Could not retrieve the order.' });
+            res.status(500).json({ error: 'Could not retrieve the order.' , data: error});
         }
     }
     getUserProcessing(req, res, next) {
@@ -94,7 +94,7 @@ class OrderController {
                 })
         } catch (error) {
 
-            res.status(500).json({ error: 'Could not retrieve the order.' });
+            res.status(500).json({ error: 'Could not retrieve the order.' , data: error});
         }
     }
     getUserProcessing(req, res, next) {
@@ -117,7 +117,7 @@ class OrderController {
                 })
         } catch (error) {
 
-            res.status(500).json({ error: 'Could not retrieve the order.' });
+            res.status(500).json({ error: 'Could not retrieve the order.' , data: error});
         }
     }
     getUserProcessing(req, res, next) {
@@ -140,7 +140,7 @@ class OrderController {
                 })
         } catch (error) {
 
-            res.status(500).json({ error: 'Could not retrieve the order.' });
+            res.status(500).json({ error: 'Could not retrieve the order.' , data: error});
         }
     }
     getUserShipped(req, res, next) {
@@ -163,7 +163,7 @@ class OrderController {
                 })
         } catch (error) {
 
-            res.status(500).json({ error: 'Could not retrieve the order.' });
+            res.status(500).json({ error: 'Could not retrieve the order.' , data: error});
         }
     }
     getUserDelivered(req, res, next) {
@@ -186,7 +186,7 @@ class OrderController {
                 })
         } catch (error) {
 
-            res.status(500).json({ error: 'Could not retrieve the order.' });
+            res.status(500).json({ error: 'Could not retrieve the order.' , data: error});
         }
     }
     getUserCanceled(req, res, next) {
@@ -209,7 +209,7 @@ class OrderController {
                 })
         } catch (error) {
 
-            res.status(500).json({ error: 'Could not retrieve the order.' });
+            res.status(500).json({ error: 'Could not retrieve the order.' , data: error});
         }
     }
     getUserReturned(req, res, next) {
@@ -232,7 +232,7 @@ class OrderController {
                 })
         } catch (error) {
 
-            res.status(500).json({ error: 'Could not retrieve the order.' });
+            res.status(500).json({ error: 'Could not retrieve the order.' , data: error});
         }
     }
     getUserAll(req, res, next) {
@@ -255,7 +255,7 @@ class OrderController {
                 })
         } catch (error) {
 
-            res.status(500).json({ error: 'Could not retrieve the order.' });
+            res.status(500).json({ error: 'Could not retrieve the order.' , data: error});
         }
     }
 
@@ -281,7 +281,7 @@ class OrderController {
                 })
         } catch (error) {
 
-            res.status(500).json({ error: 'Could not retrieve the order.' });
+            res.status(500).json({ error: 'Could not retrieve the order.' , data: error});
         }
     }
     getAdminProcessing(req, res, next) {
@@ -304,7 +304,7 @@ class OrderController {
                 })
         } catch (error) {
 
-            res.status(500).json({ error: 'Could not retrieve the order.' });
+            res.status(500).json({ error: 'Could not retrieve the order.' , data: error});
         }
     }
     getAdminProcessing(req, res, next) {
@@ -327,7 +327,7 @@ class OrderController {
                 })
         } catch (error) {
 
-            res.status(500).json({ error: 'Could not retrieve the order.' });
+            res.status(500).json({ error: 'Could not retrieve the order.' , data: error});
         }
     }
     getAdminProcessing(req, res, next) {
@@ -350,7 +350,7 @@ class OrderController {
                 })
         } catch (error) {
 
-            res.status(500).json({ error: 'Could not retrieve the order.' });
+            res.status(500).json({ error: 'Could not retrieve the order.' , data: error});
         }
     }
     getAdminShipped(req, res, next) {
@@ -373,7 +373,7 @@ class OrderController {
                 })
         } catch (error) {
 
-            res.status(500).json({ error: 'Could not retrieve the order.' });
+            res.status(500).json({ error: 'Could not retrieve the order.' , data: error});
         }
     }
     getAdminDelivered(req, res, next) {
@@ -396,7 +396,7 @@ class OrderController {
                 })
         } catch (error) {
 
-            res.status(500).json({ error: 'Could not retrieve the order.' });
+            res.status(500).json({ error: 'Could not retrieve the order.' , data: error});
         }
     }
     getAdminCanceled(req, res, next) {
@@ -419,7 +419,7 @@ class OrderController {
                 })
         } catch (error) {
 
-            res.status(500).json({ error: 'Could not retrieve the order.' });
+            res.status(500).json({ error: 'Could not retrieve the order.' , data: error});
         }
     }
     getAdminReturned(req, res, next) {
@@ -442,7 +442,7 @@ class OrderController {
                 })
         } catch (error) {
 
-            res.status(500).json({ error: 'Could not retrieve the order.' });
+            res.status(500).json({ error: 'Could not retrieve the order.' , data: error});
         }
     }
     getAdminAll(req, res, next) {
@@ -465,7 +465,7 @@ class OrderController {
                 })
         } catch (error) {
 
-            res.status(500).json({ error: 'Could not retrieve the order.' });
+            res.status(500).json({ error: 'Could not retrieve the order.' , data: error});
         }
     }
     getOne(req, res, next) {
@@ -490,7 +490,7 @@ class OrderController {
                 })
         } catch (error) {
 
-            res.status(500).json({ error: 'Could not retrieve the order.' });
+            res.status(500).json({ error: 'Could not retrieve the order.' , data: error});
         }
 
     }
@@ -517,7 +517,7 @@ class OrderController {
                 })
         } catch (error) {
 
-            res.status(500).json({ error: 'Could not retrieve the order.' });
+            res.status(500).json({ error: 'Could not retrieve the order.' , data: error});
         }
 
     }
