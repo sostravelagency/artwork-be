@@ -24,5 +24,7 @@ routerProduct.get('/:id', ProductControllers.get)
 routerProduct.put('/:id', ProductControllers.put)
 routerProduct.post('/', ProductControllers.post)
 routerProduct.get('/', ProductControllers.show)
+routerProduct.post('/accept/:id', ProductControllers.acceptProduct)
+routerProduct.post('/reject/:id', ProductControllers.rejectProduct)
 
 module.exports = routerProduct

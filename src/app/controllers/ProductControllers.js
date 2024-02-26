@@ -188,8 +188,8 @@ class ProductControllers {
             },
             sort: { createdAt: sort },
         };
-        console.log(111111111111,req.params.id);
-        Product.paginate({ user:  req.params.id  }, options, function (err, result) {
+        console.log(111111111111, req.params.id);
+        Product.paginate({ user: req.params.id, accept: true }, options, function (err, result) {
             return res.json(result)
         })
     }
@@ -278,6 +278,24 @@ class ProductControllers {
             }
         ]).then((result) => {
             res.json(result);
+        }).catch((error) => {
+            console.error(error);
+            res.status(500).json({ error: 'Could not retrieve the user count.' });
+        });
+    }
+    
+    acceptProduct(req, res, next) {
+        Product.findByIdAndUpdate({_id: req.params.id}, {accept: true}).then((result) => {
+            res.json({...result, accept: true});
+        }).catch((error) => {
+            console.error(error);
+            res.status(500).json({ error: 'Could not retrieve the user count.' });
+        });
+    }
+
+    rejectProduct(req, res, next) {
+        Product.findByIdAndDelete(req.params.id).then((result) => {
+            res.json({...result, reject: true});
         }).catch((error) => {
             console.error(error);
             res.status(500).json({ error: 'Could not retrieve the user count.' });

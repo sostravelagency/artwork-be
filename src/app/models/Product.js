@@ -18,6 +18,7 @@ const product = new Schema({
     image: [{ type: String }],
     description: { type: String, default: '' },
     deletedAt: { type: String, maxLength: 255, default: null },
+    accept: {type: Boolean, default: false}
 }, {
     timestamps: true
 })

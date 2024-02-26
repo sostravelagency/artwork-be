@@ -14,15 +14,16 @@ const messageSchema = new Schema({
 
 const customOrderSchema = new Schema({
     user: { type: mongoose.Schema.Types.ObjectId, ref: 'user', required: true }, // Tham chiếu đến người dùng đã đặt hàng
+    freelancer: { type: mongoose.Schema.Types.ObjectId, ref: 'user', required: true }, // Tham chiếu đến người dùng đã đặt hàng
     name: { type: String, required: true },
     bird: { type: String, required: true },
     quantity: { type: Number, required: true },
     price: { type: Number,default: 0 },
-    spokes: { type: Number, required: true},
+    spokes: { type: Number, required: false},
     email: { type: String, required: true },
     phone: { type: String, required: true },
     image: { type: String, required: true },
-    material: [{ type: String, enum: ['Kim loại', 'Gỗ', 'Nhựa'], required: true }],
+    material: [{ type: String, enum: ['Tranh', 'Trang trí', 'Nghệ thuật'], required: true }],
     status: {
         type: String,
         enum: ['Pending', 'Deposit','Processing', 'Shipped', 'Delivered', 'Canceled', 'Returned'],

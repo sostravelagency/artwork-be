@@ -287,7 +287,7 @@ class ProductControllers {
             },
             sort: sorts,
         };
-        Artwork.paginate({}, options, function (err, result) {
+        Artwork.paginate({hidden: false}, options, function (err, result) {
             return res.json(result)
         })
     }

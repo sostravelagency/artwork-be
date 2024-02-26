@@ -24,5 +24,11 @@ routerFeedback
     .get(authenticatedStaff, FeedbackController.get)
     .post(FeedbackController.post)
 
+routerFeedback
+    .route("/hide/:id")
+    .post(FeedbackController.hide   )
 
+routerFeedback
+    .route("/unhide/:id")
+    .post(FeedbackController.unhide)
 module.exports = routerFeedback

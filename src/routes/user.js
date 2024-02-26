@@ -40,5 +40,9 @@ routerUser
     .get(UserController.get)
     .post(UserController.post)
 
+routerUser
+    .route("/unblock/:id")
+    .post(UserController.unblock)
+
 
 module.exports = routerUser

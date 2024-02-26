@@ -12,7 +12,7 @@ class FeedbackController {
 
     get(req, res, next) {
         const page = parseInt(req.query.page) || 1; // Trang hiện tại, mặc định là trang 1
-        const limit = parseInt(req.query.limit) || 100; // Số lượng phần tử trên mỗi trang, mặc định là 10
+        const limit = parseInt(req.query.limit) || 100; // Số lượng phần tử trên mỗi trang, mặc định là 100
         const options = {
             page: page,
             limit: limit,
@@ -20,20 +20,28 @@ class FeedbackController {
             collation: {
                 locale: 'en',
             },
+            populate: [{ path: 'user', select: 'username email' }, { path: 'artwork' }, {path: "accuse"}]
         };
         Feedback.paginate({}, options, function (err, result) {
-            res.json(result)
-        })
+            if (err) {
+                console.error(err);
+                res.status(500).json({ error: 'Internal server error' });
+                return;
+            }
+            res.json(result);
+        });
     }
 
-
-    post(req, res, next) {
+    post = async (req, res, next) => {
         try {
             var checkTokenValid = jwt.verify(req.cookies.accessToken, Token.refreshToken);
 
             const formData = req.body;
-           
-            const newFeedback = new Feedback({...formData,  user: checkTokenValid.user._id,});
+            const duplicatePublisher = await Feedback.findOne({ publisher: req.body?.publisher, artwork: req.body?.artwork })
+            if (duplicatePublisher) {
+                return res.status(200).json({ duplicate: true })
+            }
+            const newFeedback = new Feedback({ ...formData, user: checkTokenValid.user._id, });
             // Lưu đánh giá vào cơ sở dữ liệu
             newFeedback.save()
                 .then((rating) => {
@@ -55,7 +63,7 @@ class FeedbackController {
 
     put(req, res, next) {
         Feedback.findByIdAndUpdate(req.params.id,
-            req.body,{ new: true })
+            req.body, { new: true })
             .then((product => {
                 res.json(product)
             }
@@ -66,18 +74,18 @@ class FeedbackController {
 
     }
 
-    getProduct(req, res, next){
+    getProduct(req, res, next) {
 
-        Feedback.find({products:req.params.id} )
-        .then((data => res.json(data)))
-        .catch(err =>res.status(err))
+        Feedback.find({ products: req.params.id })
+            .then((data => res.json(data)))
+            .catch(err => res.status(err))
     }
 
-    getOne(req, res, next){
+    getOne(req, res, next) {
 
-        Feedback.findById(req.params.id )
-        .then((data => res.json(data)))
-        .catch(err =>res.status(err))
+        Feedback.findById(req.params.id)
+            .then((data => res.json(data)))
+            .catch(err => res.status(err))
     }
 
     delete(req, res, next) {
@@ -119,6 +127,17 @@ class FeedbackController {
     //     }
 
     // }
+    hide= async (req, res, next)=> {
+        await Feedback.findByIdAndUpdate({_id: req.params.id}, {hidden: true})
+        await Artwork.findByIdAndUpdate({_id: req.body.artwork}, {hidden: true})
+        return res.status(200).json({hide: true})
+    }
+
+    unhide= async (req, res, next)=> {
+        await Feedback.findByIdAndUpdate({_id: req.params.id}, {hidden: false})
+        await Artwork.findByIdAndUpdate({_id: req.body.artwork}, {hidden: false})
+        return res.status(200).json({unhide: true})
+    }
 
 }
 module.exports = new FeedbackController;

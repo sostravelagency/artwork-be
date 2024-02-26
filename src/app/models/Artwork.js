@@ -45,6 +45,7 @@ const artwork  = new Schema({
     likes: [likeSchema],
     report: [reportSchema],
     comments: [commentSchema],
+    hidden: {type: Boolean, default: false}
 }, {
     timestamps: true
 })
