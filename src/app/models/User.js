@@ -36,7 +36,8 @@ const User = new Schema({
     role: { type: String, enum: ['user', 'manager', 'staff', 'admin'], default: 'user' },
     deleted: {type: Boolean, default: false},
     deletedAt: { type: String, maxLength: 255, default: null },
-    disable: {type: Boolean, default: false}
+    disable: {type: Boolean, default: false},
+    hidden: {type: Boolean, default: false}
 },
     {
         timestamps: true

@@ -35,4 +35,13 @@ routerArtwork.put('/:id', ProductControllers.put)
 routerArtwork.post('/', ProductControllers.post)
 routerArtwork.get('/', ProductControllers.show)
 
+
+routerArtwork
+    .route("/hide/:id")
+    .post(ProductControllers.hide)
+
+routerArtwork
+    .route("/unhide/:id")
+    .post(ProductControllers.unhide)
+
 module.exports = routerArtwork

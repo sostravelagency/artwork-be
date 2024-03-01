@@ -287,7 +287,7 @@ class ProductControllers {
             },
             sort: sorts,
         };
-        Artwork.paginate({hidden: false}, options, function (err, result) {
+        Artwork.paginate({}, options, function (err, result) {
             return res.json(result)
         })
     }
@@ -487,6 +487,14 @@ class ProductControllers {
             res.status(500).json({ error: 'Could not retrieve the user count.' });
         });
     }
+    hide= async (req, res, next)=> {
+        await Artwork.findByIdAndUpdate({_id: req.params.id}, {hidden: true})
+        return res.status(200).json({hide: true})
+    }
 
+    unhide= async (req, res, next)=> {
+        await Artwork.findByIdAndUpdate({_id: req.params.id}, {hidden: false})
+        return res.status(200).json({unhide: true})
+    }
 }
 module.exports = new ProductControllers;

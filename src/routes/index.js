@@ -11,6 +11,7 @@ const routerUser = require("./user");
 const routerRating = require("./rating");
 const routerFeedback = require("./feedback");
 const routerCustomOrder = require("./customOrder");
+const routerNotification= require("./notification")
 
 module.exports = function (app) {
   app.use('/api/login', routerLogin) //oke
@@ -24,6 +25,7 @@ module.exports = function (app) {
   app.use('/api/rpuser', routerFeedback)
   app.use('/api/admin', routerAdmin)
   app.use('/api/customOrder', routerCustomOrder)
+  app.use('/api/notification', routerNotification)
   app.use('/api/table', routerTable)
   app.use('*', router404)
 };

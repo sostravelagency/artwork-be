@@ -26,7 +26,7 @@ routerFeedback
 
 routerFeedback
     .route("/hide/:id")
-    .post(FeedbackController.hide   )
+    .post(FeedbackController.hide)
 
 routerFeedback
     .route("/unhide/:id")

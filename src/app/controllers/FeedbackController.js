@@ -89,7 +89,7 @@ class FeedbackController {
     }
 
     delete(req, res, next) {
-        Feedback.delete({ _id: req.params.id })
+        Feedback.remove({ _id: req.params.id })
             .then((User => {
                 res.send(User)
             }
@@ -130,12 +130,14 @@ class FeedbackController {
     hide= async (req, res, next)=> {
         await Feedback.findByIdAndUpdate({_id: req.params.id}, {hidden: true})
         await Artwork.findByIdAndUpdate({_id: req.body.artwork}, {hidden: true})
+        await User.findByIdAndUpdate({_id: req.body.artwork}, {hidden: true})
         return res.status(200).json({hide: true})
     }
 
     unhide= async (req, res, next)=> {
         await Feedback.findByIdAndUpdate({_id: req.params.id}, {hidden: false})
         await Artwork.findByIdAndUpdate({_id: req.body.artwork}, {hidden: false})
+        await User.findByIdAndUpdate({_id: req.body.artwork}, {hidden: false})
         return res.status(200).json({unhide: true})
     }
 

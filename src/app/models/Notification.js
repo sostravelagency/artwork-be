@@ -1,31 +1,32 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
-const mongoosePaginate = require('mongoose-paginate-v2');
-const mongooseDelete = require('mongoose-delete');
 
 const notificationSchema = new mongoose.Schema({
-    type: {
-      type: String,
-      enum: ['like', 'comment', 'report'], 
-      required: true,
-    },
-    artworkId: {
+    artwork: {
       type: mongoose.Schema.Types.ObjectId,
       ref: 'artworks', 
     },
-    userId: {
+    pusher: {
       type: mongoose.Schema.Types.ObjectId,
       ref: 'user', 
     },
-    recipients: [
-      {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'user', 
-      }
-    ],
-    viewed: {
-      type: Boolean,
-      default: false,
+    author: {
+      type: String,
+      default: "" 
+    },
+    // recipients: [
+    //   {
+    //     type: mongoose.Schema.Types.ObjectId,
+    //     ref: 'user', 
+    //   }
+    // ],
+    textType: {
+      type: String,
+      default: "",
+    },
+    type: {
+      type: Number, 
+      default: 0
     },
     timestamp: {
       type: Date,
@@ -33,7 +34,5 @@ const notificationSchema = new mongoose.Schema({
     },
   });
 
-notificationSchema .plugin(mongooseDelete, { deletedAt: true, overrideMethods: 'all' });
-notificationSchema .plugin(mongoosePaginate);
 module.exports = mongoose.model('Notification', notificationSchema );
 
