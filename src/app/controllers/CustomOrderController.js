@@ -71,9 +71,9 @@ class CustomOrderController {
                 sort: { createdAt: sort },
             };
             var checkTokenValid = jwt.verify(req.cookies.accessToken, Token.refreshToken);
-            CustomOrder.paginate({ user: checkTokenValid.user._id, status: "Pending" }, options)
+            CustomOrder.find({ freelancer: checkTokenValid.user._id, status: "Pending" })
                 .then((CustomOrder) => {
-                    res.json(CustomOrder);
+                    res.json({docs: CustomOrder});
                 })
         } catch (error) {
             console.error(error);

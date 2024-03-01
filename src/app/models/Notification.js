@@ -28,6 +28,10 @@ const notificationSchema = new mongoose.Schema({
       type: Number, 
       default: 0
     },
+    link: {
+      type: String,
+      default: ""
+    },
     timestamp: {
       type: Date,
       default: Date.now,

@@ -188,8 +188,7 @@ class ProductControllers {
             },
             sort: { createdAt: sort },
         };
-        console.log(111111111111, req.params.id);
-        Product.paginate({ user: req.params.id, accept: true }, options, function (err, result) {
+        Product.paginate({ user: req.params.id }, options, function (err, result) {
             return res.json(result)
         })
     }

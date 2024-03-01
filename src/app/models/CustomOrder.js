@@ -1,9 +1,6 @@
 const mongoose = require('mongoose');
 const slug = require('mongoose-slug-generator');
 const Schema = mongoose.Schema;
-const mongoosePaginate = require('mongoose-paginate-v2');
-const mongooseDelete = require('mongoose-delete');
-
 mongoose.plugin(slug);
 
 const messageSchema = new Schema({
@@ -35,9 +32,6 @@ const customOrderSchema = new Schema({
 }, {
     timestamps: true
 });
-
-customOrderSchema.plugin(mongooseDelete, { deletedAt: true, overrideMethods: 'all' });
-customOrderSchema.plugin(mongoosePaginate);
 
 const CustomOrder = mongoose.model('customOrders', customOrderSchema);
 
